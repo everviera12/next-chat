@@ -1,15 +1,18 @@
 "use client";
 
+import Link from "next/link";
+import { Message } from "@/types";
+
+import { GithubIcon, SendIcon } from "@/components/icons";
+import { ThemeSwitch } from "@/components/theme-switch";
+
+/* hero ui components */
 import { useState } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { Form } from "@heroui/form";
 import { ScrollShadow } from "@heroui/scroll-shadow";
-import { Message } from "@/types";
-import { GithubIcon, SendIcon } from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
-import Link from "next/link";
 
 export default function Home() {
     const [messages, setMessages] = useState<Message[]>([]);
