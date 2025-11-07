@@ -66,7 +66,6 @@ export default function Home() {
                 <ThemeSwitch />
             </div>
 
-
             <Card className="w-full max-w-5xl flex-1 bg-gray-700/70 backdrop-blur-md border border-white/10 shadow-lg">
                 <CardBody>
                     <ScrollShadow hideScrollBar className="h-[70vh] space-y-3">

@@ -20,16 +20,19 @@ export async function POST(req: Request) {
 
         console.log("Response dsata from API routes", response);
 
+        // response.body is a stream of bytes
+        // getReader() allows reading the stream chunk by chunk
         const reader = response.body.getReader();
 
         console.log("Datos del render", reader);
-        
 
         let fullText = "";
 
         while (true) {
             const { done, value } = await reader.read();
             if (done) break;
+
+            // TextDecoder converts bytes (Uint8Array) into readable text
             const chunk = new TextDecoder().decode(value);
 
             const lines = chunk.split("\n").filter(Boolean);
