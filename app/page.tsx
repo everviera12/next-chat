@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
+import { Form } from "@heroui/form";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Message } from "@/types";
 import { GithubIcon, SendIcon } from "@/components/icons";
@@ -93,19 +94,19 @@ export default function Home() {
             </Card>
 
             {/* Input form */}
-            <div className="w-full max-w-5xl flex gap-2 mt-4">
-                <Input
-                    placeholder="Type something..."
-                    size="lg"
-                    value={input}
-                    onKeyDown={handleKeyDown}
-                    onChange={(e) => setInput(e.target.value)}
-                    isDisabled={loading}
-                />
-                <Button color="primary" size="lg" onClick={sendMessage} isLoading={loading}>
-                    <SendIcon />
-                </Button>
-            </div>
+            <Form onSubmit={sendMessage} className="w-full max-w-5xl">
+                <div className="w-full flex gap-2 mt-4">
+                    <Input
+                        placeholder="Type something..."
+                        size="lg"
+                        value={input}
+                        onKeyDown={handleKeyDown}
+                        onChange={(e) => setInput(e.target.value)}
+                        isDisabled={loading}
+                    />
+                    <Button color="primary" size="lg" isLoading={loading}><SendIcon /></Button>
+                </div>
+            </Form>
         </section>
     );
 }
