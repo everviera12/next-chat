@@ -1,3 +1,4 @@
+import { contextPrompt } from "@/config/prompts";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -9,7 +10,7 @@ export async function POST(req: Request) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 model: "llama3",
-                prompt: `Eres un asistente de la empresa Victor's Website. Responde preguntas sobre servicios, precios y experiencia.\nUsuario: ${message}`,
+                prompt: ` ${contextPrompt} \nUser: ${message}`,
             }),
         });
 
@@ -17,7 +18,13 @@ export async function POST(req: Request) {
             return NextResponse.json({ reply: "No recibí respuesta del modelo." });
         }
 
+        console.log("Response dsata from API routes", response);
+
         const reader = response.body.getReader();
+
+        console.log("Datos del render", reader);
+        
+
         let fullText = "";
 
         while (true) {
