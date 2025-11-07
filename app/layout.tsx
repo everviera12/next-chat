@@ -5,7 +5,6 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
     title: {
@@ -35,7 +34,6 @@ export default function RootLayout({
             <head />
             <body>
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-                    <Navbar />
 
                     <main className="container mx-auto max-w-7xl px-6">
                         {children}

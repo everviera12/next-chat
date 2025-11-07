@@ -6,7 +6,9 @@ import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Message } from "@/types";
-import { SendIcon } from "@/components/ui/icons";
+import { GithubIcon, SendIcon } from "@/components/icons";
+import { ThemeSwitch } from "@/components/theme-switch";
+import Link from "next/link";
 
 export default function Home() {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -53,7 +55,14 @@ export default function Home() {
     };
 
     return (
-        <section className="flex flex-col h-screen py-16 justify-center items-center">
+        <section className="flex flex-col h-screen gap-6 py-16 justify-center items-center">
+
+            <div className="w-full justify-end flex gap-3">
+                <Link href={'/'}><GithubIcon className="text-default-500" /></Link>
+                <ThemeSwitch />
+            </div>
+
+
             <Card className="w-full max-w-5xl flex-1 bg-gray-700/70 backdrop-blur-md border border-white/10 shadow-lg">
                 <CardBody>
                     <ScrollShadow hideScrollBar className="h-[70vh] space-y-3">
