@@ -29,6 +29,8 @@ export default function Home() {
             });
 
             const data = await res.json();
+            console.log(data);
+
             const botMsg: Message = { role: "assistant", content: data.reply };
 
             setMessages((prev) => [...prev, botMsg]);
@@ -43,9 +45,15 @@ export default function Home() {
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    };
+
     return (
         <section className="flex flex-col h-screen py-16 justify-center items-center">
-            {/* Chat container */}
             <Card className="w-full max-w-5xl flex-1 bg-gray-700/70 backdrop-blur-md border border-white/10 shadow-lg">
                 <CardBody>
                     <ScrollShadow hideScrollBar className="h-[70vh] space-y-3">
@@ -61,9 +69,10 @@ export default function Home() {
                                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                             >
                                 <div
-                                    className={`max-w-[75%] px-4 py-2 rounded-2xl text-sm shadow-md ${msg.role === "user"
-                                        ? "bg-primary text-white"
-                                        : "bg-gray-700 text-gray-100"
+                                    className={`max-w-[75%] px-4 py-2 rounded-2xl text-sm shadow-md 
+                                        ${msg.role === "user"
+                                            ? "bg-primary text-white"
+                                            : "bg-gray-700 text-gray-100"
                                         }`}
                                 >
                                     {msg.content}
@@ -80,6 +89,7 @@ export default function Home() {
                     placeholder="Type something..."
                     size="lg"
                     value={input}
+                    onKeyDown={handleKeyDown}
                     onChange={(e) => setInput(e.target.value)}
                     isDisabled={loading}
                 />
